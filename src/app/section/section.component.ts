@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SectionComponent implements OnInit {
 
+  present = "welcome";
+
   constructor() { }
+
+
+  startTime($event : string) {
+    this.present = $event;
+  }
 
   ngOnInit(): void {
   }
