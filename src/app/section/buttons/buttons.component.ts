@@ -19,7 +19,7 @@ export class ButtonsComponent implements OnInit {
   }
 
   start() {
-    this.clickEvent.emit("change!");
+    this.clickEvent.emit("start");
   }
 
   ngOnInit(): void {

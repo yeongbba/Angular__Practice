@@ -10,20 +10,32 @@ export class TimeDisplayComponent implements OnInit {
   @Input() inputData: (string | null) = null;
  
 
-  test = 1;
+  min: number = 0;
+  sec: number = 0;
+  ms: number = 0;
+
+  timeInterval: any = null;
 
   constructor() {
     console.log(this.inputData);
+  }
 
-    setInterval(() => {
 
-      this.test += 1;
+  timeStart() {
 
-    }, 1000);
+    this.timeInterval = setInterval(() => {
+      this.ms += 1;
+    }, 10);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes);
+
+    for (let propName in changes) {
+      if (propName === "inputData" && changes[propName].currentValue === "start") {
+        this.timeStart();
+      }
+    }
   }
 
   ngOnInit(): void {
