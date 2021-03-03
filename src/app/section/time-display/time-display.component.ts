@@ -22,18 +22,36 @@ export class TimeDisplayComponent implements OnInit {
 
 
   timeStart() {
-
     this.timeInterval = setInterval(() => {
       this.ms += 1;
     }, 10);
+  }
+
+  timeStop() {
+    clearInterval(this.timeInterval)
+  }
+
+  timeReset() {
+    this.timeStop();
+    this.ms = 0;
   }
 
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes);
 
     for (let propName in changes) {
-      if (propName === "inputData" && changes[propName].currentValue === "start") {
-        this.timeStart();
+      if (propName === "inputData") {
+        switch (changes[propName].currentValue) {
+          case 'start': 
+            this.timeStart();
+            break;
+          case 'stop':
+            this.timeStop();
+            break;
+          case 'reset':
+            this.timeReset();
+            break;
+        }
       }
     }
   }
